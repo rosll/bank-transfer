@@ -12,34 +12,34 @@ namespace Bank.Transfer.Classes
 
         public Conta(TipoConta tipoConta, double saldo, double credito, string nome)
         {
-            this.TipoConta = tipoConta;
-            this.Saldo = saldo;
-            this.Credito = credito;
-            this.Nome = nome;
+            TipoConta = tipoConta;
+            Saldo = saldo;
+            Credito = credito;
+            Nome = nome;
         }
 
         public bool Sacar(double valorSaque)
         {
-            if (this.Saldo - valorSaque < (this.Credito * -1)) //validação de saldo
+            if (Saldo - valorSaque < (Credito * -1)) //validação de saldo
             {
                 Console.WriteLine("Saldo insuficiente");
                 return false;
             }
 
-            this.Saldo -= valorSaque;
-            Console.WriteLine($"Saldo atual da conta de {this.Nome} é {this.Saldo}");
+            Saldo -= valorSaque;
+            Console.WriteLine($"Saldo atual da conta de {Nome} é {Saldo}");
             return true;
         }
 
         public void Depositar(double valorDeposito)
         {
-            this.Saldo += valorDeposito;
-            Console.WriteLine($"Saldo atual da conta de {this.Nome} é {this.Saldo}");
+            Saldo += valorDeposito;
+            Console.WriteLine($"Saldo atual da conta de {Nome} é {Saldo}");
         }
 
         public void Transferir(double valorTransferencia, Conta contaDestino)
         {
-            if (this.Sacar(valorTransferencia))
+            if (Sacar(valorTransferencia))
             {
                 contaDestino.Depositar(valorTransferencia);
             }
@@ -48,10 +48,10 @@ namespace Bank.Transfer.Classes
         public override string ToString()
         {
             string retorno = "";
-            retorno += $"Tipo Conta {this.TipoConta}" + " | ";
-            retorno += $"Nome {this.Nome}" + " | ";
-            retorno += $"Saldo ${this.Saldo}" + " | ";
-            retorno += $"Crédito ${this.Credito}" + " | ";
+            retorno += $"Tipo Conta {TipoConta}" + " | ";
+            retorno += $"Nome {Nome}" + " | ";
+            retorno += $"Saldo ${Saldo}" + " | ";
+            retorno += $"Crédito ${Credito}";
             return retorno;
         }
     }
